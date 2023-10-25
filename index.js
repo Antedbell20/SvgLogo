@@ -51,5 +51,20 @@ function writeFile(fileName, data) {
             return console.log(err);
         }
         console.log("svg logo generated");
-    })
+    });
+}
+async function init() {
+    console.log("starting");
+    var svg = "";
+    var svgFile = "logo.svg";
+    const response = await inquirer.createPromptModule(questions);
+    var userText = "";
+    //making sure the response is 1-3 characters 
+    if(response.text.length > 0 && response.text.length < 4) {
+        userText = response.text;
+    }
+    else {
+        console.log("please enter 1-3 characters");
+        return;
+    }
 }
