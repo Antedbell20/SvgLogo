@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const {circle, square, triangle} = require("./lib/shape");
+
 
 //adding questions 
 const questions = [
@@ -42,4 +42,14 @@ class svg {
     setShapeEl(shape){
         this.shapeEl = shape.render()
     }
+}
+//writing data to the file
+function writeFile(fileName, data) {
+    console.log(`writing ${data} to file ${fileName}`)
+    FileSystem.writeFile(fileName, data, function(err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("svg logo generated");
+    })
 }
