@@ -1,5 +1,6 @@
-const inquirer = require("inquirer");
-
+const fs = require('fs');
+const inquirer = require('inquirer');
+const {Circle, Square, Triangle} = require("./lib/shapes");
 
 //adding questions 
 const questions = [
@@ -65,6 +66,41 @@ async function init() {
     }
     else {
         console.log("please enter 1-3 characters");
-        return;
+    return;
     }
+    console.log("user text: [" + userText + "]");
+    userFontColor = answer["textColor"];
+    console.log("user font color: ["+ userFontColor + "]");
+    userShapeColor = answer.shape;
+    console.log("user shape color: [" + userShapeColor + " ]");
+    userShapeType = answer["pixelImage"];
+    console.log("user entered shape = [" + userShapeType + "]");
+    //figuring out what shape u chose, making the shape, and logging the shape you chose
+    let userShape;
+    if (userShapeType === "square" || userShapeType === "square") {
+        userShape = new Square();
+        console.log("user chose square");
+    }
+    else if (usaerShapeType === "Circle" || userShapeType === "circle") {
+        userShape = new Circle();
+        console.log("user chose circle");
+    }
+    else if (userShapeType === "Triangle" || userShapeType === "triangle") {
+        userShape = new Triangle();
+        console.log("user chose triangle");
+    }
+    else {
+        console.log("not a valid shape");
+    }
+    userShape.setColor(userShapeColor);
+    var svg = new svg();
+    svg.setTextElement(userText, UserFontColor);
+    svg.setShapeElement(userShape);
+    svgString = svg.render();
+    console.log("shape: \n\n" + svgString);
+    console.log("shape generated");
+    console.log("writing shape to file");
+    writeToFile(svgFile, svgString);
+
 }
+init()
